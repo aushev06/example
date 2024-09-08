@@ -28,4 +28,5 @@ require __DIR__ . '/auth.php';
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', \App\Http\Middleware\CheckAdminMiddleware::class]], static function () {
     Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.index');
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
