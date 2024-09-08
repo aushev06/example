@@ -26,6 +26,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::group(['prefix' => 'admin'], static function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', \App\Http\Middleware\CheckAdminMiddleware::class]], static function () {
     Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.index');
 });
